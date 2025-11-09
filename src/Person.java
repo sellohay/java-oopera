@@ -18,6 +18,11 @@ public class Person {
     }
 
     @Override
+    public String toString() {
+        return name + " " + surname;
+    }
+
+    @Override
     public boolean equals(Object obj) {
         if (this == obj) return true;
         if (obj == null || getClass() != obj.getClass()) return false;

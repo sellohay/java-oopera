@@ -13,7 +13,7 @@ public class Actor extends Person {
 
     @Override
     public String toString() {
-        return "Актёр: " + this.name + " " + this.surname + " (Рост " + this.height + " см)";
+        return "Актёр: " + super.toString() + " (Рост " + this.height + " см)";
     }
 
     @Override

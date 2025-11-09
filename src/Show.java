@@ -16,23 +16,30 @@ public class Show {
     public void printActors() {
         System.out.println("Список актёров спектакля \"" + title + "\": ");
         for (Actor actor : listOfActors) {
-            System.out.println(actor.toString());
+            System.out.println(actor);
         }
+    }
+
+    public void printDirector() {
+        System.out.println("Режиссёр: " + director);
     }
 
     private boolean isCasted(Actor actor) {
         for (Actor actor2 : listOfActors) {
-            if (actor.equals(actor2))
+            if (actor.equals(actor2)) {
                 return true;
+            }
         }
         return false;
     }
 
     public void addActor(Actor actor) {
-        if (!isCasted(actor))
+        if (!isCasted(actor)) {
             listOfActors.add(actor);
-        else
+        }
+        else {
             System.out.println("Этот актёр уже есть в спектакле!");
+        }
     }
 
     public void changeActor(Actor actor, String oldSurname) {
@@ -41,14 +48,24 @@ public class Show {
             return;
         }
         Actor oldActor = null;
+        boolean unique = true;
         for (Actor actor2 : listOfActors) {
-            if (actor2.getSurname().equals(oldSurname))
+            if (actor2.getSurname().equals(oldSurname)) {
+                if (oldActor == null) {
+                    oldActor = actor2;
+                } else {
+                    unique = false;
+                }
                 oldActor = actor2;
+            }
         }
-        if (oldActor != null) {
+        if (oldActor != null && unique) {
             listOfActors.remove(oldActor);
             listOfActors.add(actor);
-        } else {
+        } else if (!unique) {
+            System.out.println("Ошибка: в спектакле есть несколько актёров с такой фамилией");
+        }
+        else {
             System.out.println("Извините, этого актёра нет в этом спектакле.");
         }
     }
